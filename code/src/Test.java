@@ -16,7 +16,7 @@ public class Test {
     String password = "";
 
      try {
-      //  Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
 
       con = DriverManager.getConnection(
         "jdbc:mysql://" + host + "/" + database + "?useSSL=false",

@@ -1,0 +1,3 @@
+target=Test
+classpath=src/bin/:src/model-classes/
+native_classpath=.;src/;src/bin/;src/model-classes/

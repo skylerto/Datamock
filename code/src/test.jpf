@@ -1,3 +1,4 @@
 target=Test
-classpath=.:mysql-connector-java-5.0.8-bin.jar
-native_classpath=.;bin/;test/
+classpath=bin/;model-classes/;
+native_classpath=.;bin/;model-classes/;
+

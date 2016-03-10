@@ -1,0 +1,5 @@
+#! /bin/sh
+
+echo "compiling..";
+javac src/Test.java -d src/bin; javac src/java/**/*.java -d src/model-classes;
+echo "finished compiling";
