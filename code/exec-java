@@ -1,3 +1,3 @@
 #! /bin/sh
 
-java -cp src/bin/:src/mysql-connector-java-5.0.8-bin.jar Test
+java -cp bin/:lib/mysql-jdbc.jar App

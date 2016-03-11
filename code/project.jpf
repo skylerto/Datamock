@@ -1,3 +1,3 @@
-target=Test
-classpath=src/bin/:src/model-classes/
-native_classpath=.;src/;src/bin/;src/model-classes/
+target=App
+classpath=.;bin/;bin/model-classes/;lib/mysql-jdbc.jar
+native_classpath=.;bin/;bin/model-classes/;

@@ -1,4 +1,0 @@
-target=Test
-classpath=bin/;model-classes/;
-native_classpath=.;bin/;model-classes/;
-
