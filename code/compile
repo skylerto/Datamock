@@ -1,5 +1,5 @@
 #! /bin/sh
 
 echo "compiling..";
-javac src/Test.java -d src/bin; javac src/java/**/*.java -d src/model-classes;
+javac src/Test.java -d src/bin; javac -Xlint:unchecked src/java/**/*.java src/mock/*.java -d src/model-classes/;
 echo "finished compiling";
