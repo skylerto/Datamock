@@ -38,7 +38,7 @@ public class DatabaseTest {
     Database db = new Database();
     db.createTable("PEOPLE");
     System.out.println(db.getTable("PEOPLE"));
-    assertSame(new Table(), db.getTable("PEOPLE"));
+    assertSame(new Table("PEOPLE"), db.getTable("PEOPLE"));
 
   }
 

@@ -8,17 +8,19 @@ import java.util.*;
  * @author Skyler Layne (c) All Rights Reserved.
  */
 public class Database {
-  private Map<String, Table> database;
+  private List<Table> database;
+  private String name;
 
-  public Database() {
-    this.database = new HashMap<String, Table>();
+  public Database(String name) {
+    this.database = new ArrayList<Table>();
+    this.name = name;
   }
 
   /**
    * Get the database.
    * @return the database.
    */
-  public Map<String, Table> getDatabase() {
+  public List<Table> getDatabase() {
     return this.database;
   }
 
@@ -32,7 +34,7 @@ public class Database {
   }
 
   public Boolean createTable(String name){
-      Table t = this.database.put(name, new Table());
+      Table t = this.database.put(name, new Table(name));
       return t == null ? false: true;
   }
 }

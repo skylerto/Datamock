@@ -14,21 +14,21 @@ public class TableTest {
   @Test
   public void testCreate() {
     System.out.println("Running TABLE: testCreate -- ");
-    Table t = new Table();
+    Table t = new Table("People");
 
   }
 
   @Test
   public void testGet() {
     System.out.println("Running TABLE: testGet -- ");
-    Table t = new Table();
+    Table t = new Table("People");
     // assertEquals(new HashMap<String, Table>(), db.getDatabase());
   }
 
   @Test
   public void testGetTable() {
     System.out.println("Running TABLE testGetTable -- ");
-    Table t = new Table();
+    Table t = new Table("People");
     assertEquals(new HashMap<String, List<String>>(), t.getTable());
   }
   @Test
@@ -63,6 +63,8 @@ public class TableTest {
     map.put("id", list2);
 
 System.out.println(t.toString());
+
+System.out.println(t.getAttribtues());
     assertEquals(map, t.getTable());
   }
 
