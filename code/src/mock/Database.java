@@ -18,7 +18,7 @@ public class Database {
    * Get the database.
    * @return the database.
    */
-  public Map<String, Table>getDatabase() {
+  public Map<String, Table> getDatabase() {
     return this.database;
   }
 
@@ -29,5 +29,10 @@ public class Database {
    */
   public Table getTable(String tablename) {
     return this.database.get(tablename);
+  }
+
+  public Boolean createTable(String name){
+      Table t = this.database.put(name, new Table());
+      return t == null ? false: true;
   }
 }

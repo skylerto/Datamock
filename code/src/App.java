@@ -32,6 +32,8 @@ public class App {
 
       // Insert Data.
       stmt.executeUpdate("insert into students (name, id) values ('Skyler Layne', 212166906)");
+      stmt.executeUpdate("insert into students (name, id) values ('John Doe', 212166907)");
+      stmt.executeUpdate("insert into students (name, id) values ('Jane Smith', 212166908)");
 
       // Retrieve Data
       ResultSet rs = stmt.executeQuery("select * from students");
