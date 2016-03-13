@@ -59,6 +59,10 @@ public class Table {
     return this.table.get(attribute);
   }
 
+  public String getName(){
+    return this.name;
+  }
+
   /**
    * Returns a String Set of all the attributes in the table.
    * @return a Set of table attributes.

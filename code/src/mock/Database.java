@@ -8,11 +8,11 @@ import java.util.*;
  * @author Skyler Layne (c) All Rights Reserved.
  */
 public class Database {
-  private List<Table> database;
+  private List<Table> tables;
   private String name;
 
   public Database(String name) {
-    this.database = new ArrayList<Table>();
+    this.tables = new ArrayList<Table>();
     this.name = name;
   }
 
@@ -20,8 +20,8 @@ public class Database {
    * Get the database.
    * @return the database.
    */
-  public List<Table> getDatabase() {
-    return this.database;
+  public List<Table> getTables() {
+    return this.tables;
   }
 
   /**
@@ -30,11 +30,12 @@ public class Database {
    * @return           the Table.
    */
   public Table getTable(String tablename) {
-    return this.database.get(tablename);
+    Table t = this.tables.stream().filter(table -> table.getName().equals("tablename")).findFirst().get();
+
+    return t;
   }
 
-  public Boolean createTable(String name){
-      Table t = this.database.put(name, new Table(name));
-      return t == null ? false: true;
+  public boolean createTable(String name){
+      return this.tables.add(new Table(name));
   }
 }

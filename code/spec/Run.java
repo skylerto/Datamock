@@ -14,10 +14,10 @@ public class Run {
     System.out.println("***RUN SPEC***");
 
     // System.out.println("*RUNNING DATABASE TEST SPEC*");
-        System.out.println("*RUNNING TABLE TEST SPEC*");
+        // System.out.println("*RUNNING TABLE TEST SPEC*");
 
 
-    Result result = JUnitCore.runClasses(TableTest.class);
+    Result result = JUnitCore.runClasses(DatabaseTest.class);
 
     for (Failure failure : result.getFailures()) {
       System.out.println(failure.toString());

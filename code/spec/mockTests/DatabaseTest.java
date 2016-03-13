@@ -14,31 +14,33 @@ public class DatabaseTest {
   @Test
   public void testCreate() {
     System.out.println("Running testCreate -- ");
-    Database db = new Database();
+    Database db = new Database("Store");
 
   }
 
   @Test
   public void testGet() {
     System.out.println("Running testGet -- ");
-    Database db = new Database();
-    assertEquals(new HashMap<String, Table>(), db.getDatabase());
+    Database db = new Database("Store");
+    assertEquals(new ArrayList<Table>(), db.getTables());
   }
 
   @Test
   public void testGetTable() {
     System.out.println("Running testGetTable -- ");
-    Database db = new Database();
+    Database db = new Database("Store");
     assertEquals(null, db.getTable(""));
   }
 
   @Test
   public void testCreateTable() {
     System.out.println("Running testCreateTable -- ");
-    Database db = new Database();
-    db.createTable("PEOPLE");
-    System.out.println(db.getTable("PEOPLE"));
-    assertSame(new Table("PEOPLE"), db.getTable("PEOPLE"));
+    Database db = new Database("Store");
+    assertEquals(true, db.createTable("Employees"));
+    
+    System.out.println(db.getTable("Employees"));
+
+    assertEquals(new Table("Employees"), db.getTable("Employees"));
 
   }
 
