@@ -72,7 +72,14 @@ public class Database {
 
     System.out.println(attributes.toString() + ": " + values.toString());
 
+    for(String a : attributes){
+      this.insert(table, a, values.get(attributes.indexOf(a)));
+    }
 
     return true;
+  }
+
+  private boolean insert(String table, String attribute, String value){
+    return this.getTable(table).add(attribute, value);
   }
 }
