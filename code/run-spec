@@ -1,5 +1,5 @@
 #! /bin/sh
 
 ./compile;
-javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar spec/**/*.java src/mock/*.java -d spec/bin/;
+javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar spec/*.java spec/mockTests/*.java src/mock/*.java -d spec/bin/;
 java -cp bin/mock-classes:spec/bin/:lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar Run;

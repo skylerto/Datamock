@@ -13,14 +13,14 @@ public class Run {
   public static void main(String args[]) {
     System.out.println("***RUN SPEC***");
 
-    // System.out.println("*RUNNING DATABASE TEST SPEC*");
+    System.out.println("*RUNNING DATABASE TEST SPEC*");
         // System.out.println("*RUNNING TABLE TEST SPEC*");
 
 
     Result result = JUnitCore.runClasses(DatabaseTest.class);
 
     for (Failure failure : result.getFailures()) {
-      System.out.println(failure.toString());
+      System.out.println("FAIL: " + failure.toString());
     }
     System.out.println(result.wasSuccessful());
 

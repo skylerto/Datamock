@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Table {
   // Map of Attribute Name -> List of values.
-  private Map<String, List<String> > table;
+  private Map<String, List<String>> table;
   private String name;
 
   /**
@@ -18,7 +18,7 @@ public class Table {
    * @param  name - the name of the table.
    */
   public Table(String name) {
-    this.table = new HashMap<String, List<String> >();
+    this.table = new HashMap<String, List<String>>();
     this.name  = name;
   }
 
@@ -26,7 +26,7 @@ public class Table {
    * Get the table.
    * @return The table.
    */
-  public Map<String, List<String> >getTable() {
+  public Map<String, List<String>>getTable() {
     return this.table;
   }
 
@@ -70,8 +70,6 @@ public class Table {
   public Set<String> getAttribtues(){
     return this.table.keySet();
   }
-
-
 
   public String toString() {
     StringBuilder s = new StringBuilder();

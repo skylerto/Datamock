@@ -15,7 +15,6 @@ public class DatabaseTest {
   public void testCreate() {
     System.out.println("Running testCreate -- ");
     Database db = new Database("Store");
-
   }
 
   @Test
@@ -37,12 +36,13 @@ public class DatabaseTest {
     System.out.println("Running testCreateTable -- ");
     Database db = new Database("Store");
     assertEquals(true, db.createTable("Employees"));
-    
-    System.out.println(db.getTable("Employees"));
-
-    assertEquals(new Table("Employees"), db.getTable("Employees"));
-
   }
 
-
+  @Test
+  public void testAddToTable() {
+    System.out.println("Running testAddToTable -- ");
+    Database db = new Database("Store");
+    assertEquals(true, db.createTable("Employees"));
+    db.insert("insert into Employees (name, id) VALUES (Skyler Layne, 212166906)");
+  }
 }
