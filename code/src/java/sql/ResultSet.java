@@ -1,25 +1,51 @@
 package java.sql;
 
+import java.util.Map;
+
+import mock.Table;
+import mock.TableIterator;
+
+/**
+ * Mocking the java.sql.ResultSet class. This mock implementation is essentially a generic iterator
+ * for any potential queries to the mock Database or Table class.
+ * 
+ * @author Skyler Layne (c) All Rights Reserved.
+ *
+ */
 public class ResultSet {
-	public ResultSet() {
-		System.out.println("ResultSet");
-	}
+  private Table table;
+  private TableIterator iterator;
+  private Map<String, String> current;
 
-	public String getString(String s) {
-		System.out.println("Getting string with key: " + s);
-		return s;
-	}
+  public ResultSet() {
+    System.out.println("ResultSet");
+  }
 
-	public int getInt(String s) {
-		System.out.println("Getting int with key: " + s);
-		return 1;
-	}
+  public ResultSet(Table table) {
+    this.iterator = table.iterator();
 
-	public boolean next() {
-		return false;
-	}
+    System.out.println("ResultSet Table: " + table);
+  }
 
-	public void close() {
-		System.out.println("Closing ResultSet...");
-	}
+  public String getString(String string) {
+    System.out.println("Getting string with key: " + string);
+    return this.current.get(string);
+  }
+
+  public int getInt(String string) {
+    System.out.println("Getting int with key: " + string);
+    return Integer.parseInt(this.current.get(string));
+  }
+
+  public boolean next() {
+    if (this.iterator.hasNext()) {
+      this.current = this.iterator.next();
+      return true;
+    }
+    return false;
+  }
+
+  public void close() {
+    System.out.println("Closing ResultSet...");
+  }
 }

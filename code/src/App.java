@@ -1,50 +1,58 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class App {
-	public static void main(String args[]) {
 
-		Connection con = null;
-		Statement stmt;
+  /**
+   * Main.
+   * 
+   * @param args
+   *          - sys args.
+   */
+  public static void main(String[] args) {
 
-		String database = "mission";
-		String host = "localhost";
-		String username = "root";
-		String password = "";
+    Connection con = null;
+    Statement stmt;
 
-		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+    String database = "mission";
+    String host = "localhost";
+    String username = "root";
+    String password = "";
 
-			con = DriverManager.getConnection("jdbc:mysql://" + host + "/" + database + "?useSSL=false", username,
-					password);
+    try {
+      Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-			stmt = con.createStatement();
+      con = DriverManager.getConnection("jdbc:mysql://" + host + "/" + database + "?useSSL=false",
+          username, password);
 
-			// Create table.
-			stmt.execute("drop table if exists students");
-			stmt.execute("create table students (name VARCHAR(20), id INT, PRIMARY KEY (id))");
+      stmt = con.createStatement();
 
-			// Insert Data.
-			stmt.executeUpdate("insert into students (name, id) values ('Skyler Layne', 212166906)");
-			stmt.executeUpdate("insert into students (name, id) values ('John Doe', 212166907)");
-			stmt.executeUpdate("insert into students (name, id) values ('Jane Smith', 212166908)");
+      // Create table.
+      stmt.execute("drop table if exists students");
+      stmt.execute("create table students (name VARCHAR(20), id INT, PRIMARY KEY (id))");
 
-			// Retrieve Data
-			ResultSet rs = stmt.executeQuery("select * from students");
-			while (rs.next()) {
-				System.out.println(rs.getString("name") + ", " + rs.getInt("id"));
-			}
+      // Insert Data.
+      stmt.executeUpdate("insert into students (name, id) values ('Skyler Layne', 212166906)");
+      stmt.executeUpdate("insert into students (name, id) values ('John Doe', 212166907)");
+      stmt.executeUpdate("insert into students (name, id) values ('Jane Smith', 212166908)");
 
-			// Shut it down.
-			rs.close();
-			stmt.close();
-			con.close();
+      // Retrieve Data
+      ResultSet rs = stmt.executeQuery("select * from students");
+      while (rs.next()) {
+        System.out.println(rs.getString("name") + ", " + rs.getInt("id"));
+      }
 
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-	}
+      // Shut it down.
+      rs.close();
+      stmt.close();
+      con.close();
+
+    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException
+        | SQLException e) {
+      e.printStackTrace();
+    }
+  }
 }

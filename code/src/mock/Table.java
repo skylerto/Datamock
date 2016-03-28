@@ -15,27 +15,31 @@ public class Table {
   /**
    * Create an instance of a Table with the specified name.
    *
-   * @param  name - the name of the table.
+   * @param name
+   *          - the name of the table.
    */
   public Table(String name) {
     this.table = new HashMap<String, List<String>>();
-    this.name  = name;
+    this.name = name;
   }
 
   /**
    * Get the table.
+   * 
    * @return The table.
    */
-  public Map<String, List<String>>getTable() {
+  public Map<String, List<String>> getTable() {
     return this.table;
   }
 
   /**
    * Add a specified value of that attribtue.
    *
-   * @param attributename - the name of the attribtue associated with the value.
-   * @param   value - the value to save under that attribtue.
-   * @return  true if the value has been added to the attribute.
+   * @param attributename
+   *          - the name of the attribtue associated with the value.
+   * @param value
+   *          - the value to save under that attribtue.
+   * @return true if the value has been added to the attribute.
    */
   public boolean add(String attributename, String value) {
     boolean result = false;
@@ -52,22 +56,24 @@ public class Table {
   /**
    * Get the values of a specified attribute.
    *
-   * @param  attribute - The name of the attribute.
-   * @return           a list of all the values for that attribute.
+   * @param attribute
+   *          - The name of the attribute.
+   * @return a list of all the values for that attribute.
    */
   public List<String> getValues(String attribute) {
     return this.table.get(attribute);
   }
 
-  public String getName(){
+  public String getName() {
     return this.name;
   }
 
   /**
    * Returns a String Set of all the attributes in the table.
+   * 
    * @return a Set of table attributes.
    */
-  public Set<String> getAttribtues(){
+  public Set<String> getAttribtues() {
     return this.table.keySet();
   }
 
@@ -83,5 +89,9 @@ public class Table {
     });
 
     return s.toString();
+  }
+
+  public TableIterator iterator() {
+    return new TableIterator(this);
   }
 }
