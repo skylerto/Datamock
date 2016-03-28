@@ -1,3 +1,2 @@
 target=App
-classpath=.;bin/;bin/model-classes/;lib/mysql-jdbc.jar
-native_classpath=.;bin/;bin/model-classes/;
+classpath=bin/;bin/model-classes/;
