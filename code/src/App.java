@@ -4,6 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * A simple example of the usage of DataMock.
+ * 
+ * @author Skyler Layne (c) All Rights Reserved.
+ *
+ */
 public class App {
 
   /**
