@@ -1,6 +1,8 @@
 package mock;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A wrapper of a Map to represent a database.
@@ -43,7 +45,7 @@ public class Database {
    * 
    * @param tablename
    *          the name of the table to attain.
-   * @return the Table.
+   * @return the Table, or null if it can't find the table.
    */
   public Table getTable(String tablename) {
     for (int i = 0; i < this.tables.size(); i++) {
@@ -85,30 +87,11 @@ public class Database {
     ArrayList<String> attributes = new ArrayList<String>(Arrays.asList(as.split(", ")));
     ArrayList<String> values = new ArrayList<String>(Arrays.asList(ops.split(", ")));
 
-    System.out.println(attributes.toString() + ": " + values.toString());
-
     for (String a : attributes) {
       this.insert(table, a, values.get(attributes.indexOf(a)));
     }
 
     return true;
-  }
-
-  /**
-   * Remove from a database.
-   * 
-   * @param statement
-   *          the statement to parse and execute.
-   * @return if the statement was executed sucessfully.
-   */
-  public boolean remove(String statement) {
-    String table = statement.substring(statement.indexOf("m ") + 2, statement.indexOf("w") - 1);
-    String attribute = statement.substring(statement.indexOf("where ") + 6, statement.indexOf("="));
-    String value = statement.substring(statement.indexOf("=") + 1, statement.length());
-
-    this.getTable(table).delete(attribute, value);
-    return true;
-
   }
 
   /**
@@ -124,5 +107,48 @@ public class Database {
    */
   private boolean insert(String table, String attribute, String value) {
     return this.getTable(table).add(attribute, value);
+  }
+
+  /**
+   * Remove from a database.
+   * 
+   * @param statement
+   *          the statement to parse and execute.
+   * @return if the statement was executed successfully.
+   */
+  public boolean delete(String statement) {
+    String table = statement.substring(statement.indexOf("m ") + 2, statement.indexOf("w") - 1);
+    String attribute = statement.substring(statement.indexOf("where ") + 6, statement.indexOf("="));
+    String value = statement.substring(statement.indexOf("=") + 1, statement.length());
+
+    this.getTable(table).delete(attribute, value);
+    return true;
+
+  }
+
+  /**
+   * Remove the table form the database.
+   * 
+   * @param tablename
+   *          the name of the table to remove.
+   * @return if the remove was successful.
+   */
+  public boolean drop(String tablename) {
+    for (Table table : this.tables) {
+      if (table.getName().equals(tablename)) {
+        this.tables.remove(table);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Get the name of the database.
+   * 
+   * @return the database's name.
+   */
+  public String getName() {
+    return this.name;
   }
 }

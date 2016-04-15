@@ -3,11 +3,13 @@
 Datamock is a database mocking extension for
 [JPF](http://babelfish.arc.nasa.gov/trac/jpf/wiki).
 
-[Javadoc](http://skylerlayne.me/datamock/) is available.
+[Javadoc](http://skylerlayne.me/datamock/) is available at [http://skylerlayne.me/datamock/](http://skylerlayne.me/datamock/).
 
 ## Usage
 
-Firstly, ensure that JPF is installed on your machine. For a quick and dirty example, checkout the [example](code/src/App.java).
+Firstly, ensure that JPF is installed on your machine. 
+
+For a quick and dirty example, checkout the [example](code/src/App.java).
 
 ## Contribute
 

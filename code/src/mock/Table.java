@@ -1,7 +1,11 @@
 package mock;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * A wrapper of a Map to represent a database table.
@@ -48,7 +52,7 @@ public class Table {
     if (getTable().get(attributename) != null) {
       result = getTable().get(attributename).add(value);
     } else {
-      getTable().put(attributename, new ArrayList());
+      getTable().put(attributename, new ArrayList<String>());
       result = getTable().get(attributename).add(value);
     }
     return result;
@@ -64,11 +68,9 @@ public class Table {
    * @return if the remove worked.
    */
   public boolean delete(String attribute, String value) {
-
-    System.out.println("\n\nTABLE REMOVE\n\n");
     boolean result = false;
     if (getTable().get(attribute) != null) {
-      TableIterator tb = this.iterator();
+      TableIterator tb = new TableIterator(this);
       while (tb.hasNext()) {
         Map<String, String> row = tb.next();
         for (Entry<String, String> entry : row.entrySet()) {
@@ -76,7 +78,6 @@ public class Table {
             result = tb.delete();
           }
         }
-
       }
     }
     return result;

@@ -1,2 +1,2 @@
 target=App
-classpath=bin/;bin/model-classes/;
+classpath=jpf/;jpf/model-classes/;

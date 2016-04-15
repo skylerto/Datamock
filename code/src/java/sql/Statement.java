@@ -1,7 +1,5 @@
 package java.sql;
 
-import java.util.List;
-
 import mock.Database;
 import mock.Table;
 
@@ -12,15 +10,9 @@ import mock.Table;
  */
 public class Statement {
 
-  /*
-   * The DATABASE is a "Map<String, Map<String, List<String\>\>\>" of TABLE names -> a Map<String,
-   * List <String>>, a TABLE is Map<String, List<String>> -> ATTRIBUTE name, an ATTRIBUTE has a list
-   * of VALUES where its index is the ROW #/ID #.
-   */
   private Database database;
 
   public Statement() {
-    System.out.println("Statement");
     this.database = new Database(DriverManager.database);
   }
 
@@ -30,15 +22,19 @@ public class Statement {
    * @param input
    *          the desired query.
    * @return an iterator over the query results.
+   * @throws SQLException
+   *           if the table cannot be found.
    */
-  public ResultSet executeQuery(String input) {
-    System.out.println("Executing Query: " + input);
+  public ResultSet executeQuery(String input) throws SQLException {
     int index = input.indexOf("from ") + 4;
-
     String tablename = input.substring(index, input.length()).trim();
-    List<Table> tables = this.database.getTables();
+    Table table = this.database.getTable(tablename);
+    if (table != null) {
+      return new ResultSet(table);
+    } else {
+      throw new SQLException(tablename);
+    }
 
-    return new ResultSet(this.database.getTable(tablename));
   }
 
   /**
@@ -49,36 +45,27 @@ public class Statement {
    * @return if the command hits
    */
   public boolean execute(String input) {
+    boolean result = false;
+
     // Parse input
     String[] parse = input.split(" ");
-    String command = parse[0]; // e.g. create, drop
-    String instance = parse[1]; // e.g. table, databse column...
+    String command = parse[0];
+    String instance = parse[1];
     String tablename = parse[2];
-    System.out.println("TABLENAME: " + tablename);
-
-    // Look for command in the string
-
-    // IF it's a create table, create a new map, add it to the map at the
-    // table name.
 
     switch (command) {
     case "create":
-      if (instance.equals("table")) {
-        this.database.createTable(tablename);
-        // Who even cares about schema atm.
-      }
-      System.out.println("Creating table... " + tablename);
+      result = this.database.createTable(tablename.trim());
       break;
     case "drop":
-
-      System.out.println("Dropping table... " + tablename);
+      result = this.database.drop(tablename);
       break;
     default:
+      result = false;
       break;
     }
 
-    System.out.println("Executing: " + input);
-    return true;
+    return result;
   }
 
   /**
@@ -89,51 +76,34 @@ public class Statement {
    * @return always 1.
    */
   public int executeUpdate(String input) {
+    boolean result = false;
+
     // Parse input
     String[] parse = input.split(" ");
     String command = parse[0]; // e.g. create, drop
     String instance = parse[1]; // e.g. table, database column...
     String tablename = parse[2];
-    System.out.println(command);
-    // Look for command in the string
-
-    // IF it's a create table, create a new map, add it to the map at the
-    // table name.
-
     switch (command) {
     case "insert":
-      this.database.insert(input);
-      String scheme = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
-      String values = input.substring(input.lastIndexOf("(") + 1, input.lastIndexOf(")"));
-
-      System.out.println("Scheme: " + scheme + " Values: " + values);
-
-      // Who even cares about schema atm.
-
-      System.out.println("Creating table... " + tablename);
+      result = this.database.insert(input);
       break;
     case "delete":
-      this.database.remove(input);
-
-      // Who even cares about schema atm.
-
-      System.out.println("Creating table... " + tablename);
+      result = this.database.delete(input);
+      break;
     case "drop":
-      // if (instance.equals("table") && this.database.containsKey(tablename)) {
-      // this.database.remove(tablename);
-      // }
-      System.out.println("Dropping table... " + tablename);
+      result = this.database.drop(tablename);
       break;
     default:
       break;
     }
 
-    System.out.println("executeUpdate: " + input);
-
-    return 1;
+    return result ? 1 : 0;
   }
 
+  /**
+   * Close the connection to the statement.
+   */
   public void close() {
-    System.out.println("Closing Statement...");
+
   }
 }

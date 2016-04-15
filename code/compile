@@ -1,6 +1,0 @@
-#! /bin/sh
-
-echo "compiling..";
-javac src/java/**/*.java src/mock/*.java -d bin/model-classes
-javac -cp bin src/*.java src/com/mysql/jdbc/*.java -d bin;
-echo "finished compiling";

@@ -11,7 +11,6 @@ import java.sql.SQLException;
  */
 public class Driver {
   public Driver() {
-    System.out.println("Driver init");
   }
 
   /**

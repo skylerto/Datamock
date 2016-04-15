@@ -1,6 +1,5 @@
 package mock;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -36,7 +35,7 @@ public class TableIterator implements Iterator<Map<String, String>> {
    */
   @Override
   public boolean hasNext() {
-    return index < table.getTable().size();
+    return index < this.table.getAttribtues().size();
   }
 
   /**
@@ -46,11 +45,11 @@ public class TableIterator implements Iterator<Map<String, String>> {
    */
   @Override
   public Map<String, String> next() {
-    Map<String, String> val = new HashMap();
+    Map<String, String> val = new HashMap<String, String>();
     for (Entry<String, List<String>> entry : table.getTable().entrySet()) {
-      val.put(entry.getKey(), entry.getValue().get(index));
+      val.put(entry.getKey(), entry.getValue().get(this.index));
     }
-    incrementIndex();
+    this.index++;
     return val;
   }
 
@@ -63,19 +62,9 @@ public class TableIterator implements Iterator<Map<String, String>> {
     boolean result = false;
     for (Entry<String, List<String>> entry : table.getTable().entrySet()) {
       List<String> anitem = entry.getValue();
-      System.out.println(
-          "AN ITEM: " + anitem.toString() + " item: " + anitem.get(index - 1) + " index: " + index);
       anitem.remove(index - 1);
       result = true;
     }
     return result;
   }
-
-  /**
-   * Move the iterator alone.
-   */
-  private void incrementIndex() {
-    this.index++;
-  }
-
 }

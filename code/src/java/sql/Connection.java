@@ -8,7 +8,6 @@ package java.sql;
  */
 public class Connection {
   public Connection() {
-    System.out.println("Connection");
   }
 
   /**
@@ -19,7 +18,6 @@ public class Connection {
    *           pretend.
    */
   public Statement createStatement() throws SQLException {
-    System.out.println("Creating a new statement!");
     return new Statement();
   }
 
@@ -27,6 +25,5 @@ public class Connection {
    * Mock closing the connection to the database.
    */
   public void close() {
-    System.out.println("Closing Connection...");
   }
 }

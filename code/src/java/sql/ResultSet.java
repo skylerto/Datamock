@@ -1,9 +1,9 @@
 package java.sql;
 
-import java.util.Map;
-
 import mock.Table;
 import mock.TableIterator;
+
+import java.util.Map;
 
 /**
  * Mocking the java.sql.ResultSet class. This mock implementation is essentially a generic iterator
@@ -13,7 +13,6 @@ import mock.TableIterator;
  *
  */
 public class ResultSet {
-  private Table table;
   private TableIterator iterator;
   private Map<String, String> current;
 
@@ -21,7 +20,6 @@ public class ResultSet {
    * Default Constructor.
    */
   public ResultSet() {
-    System.out.println("ResultSet");
   }
 
   /**
@@ -32,8 +30,6 @@ public class ResultSet {
    */
   public ResultSet(Table table) {
     this.iterator = table.iterator();
-
-    System.out.println("ResultSet Table: " + table);
   }
 
   /**
@@ -55,7 +51,7 @@ public class ResultSet {
    * @return an int representation of the value of the given row column.
    */
   public int getInt(String attribute) {
-    return Integer.parseInt(this.current.get(attribute));
+    return Integer.parseInt(this.current.get(attribute.trim()));
   }
 
   /**
@@ -75,6 +71,5 @@ public class ResultSet {
    * Mock a closed connection.
    */
   public void close() {
-    System.out.println("Closing ResultSet...");
   }
 }

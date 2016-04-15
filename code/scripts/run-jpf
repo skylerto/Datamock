@@ -1,0 +1,10 @@
+#! /bin/sh
+
+echo "compiling for JPF..";
+javac src/java/**/*.java src/mock/*.java -d jpf/model-classes;
+javac -cp bin src/*.java -d jpf/model-classes;
+javac -cp bin src/com/mysql/jdbc/*.java -d jpf/model-classes;
+echo "finished compiling";
+
+echo "running jpf";
+jpf project.jpf

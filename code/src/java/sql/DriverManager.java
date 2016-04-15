@@ -14,7 +14,6 @@ public class DriverManager {
    * Default constructor.
    */
   public DriverManager() {
-    System.out.println("DriverManager");
   }
 
   /**
@@ -30,7 +29,6 @@ public class DriverManager {
    */
   public static Connection getConnection(String url, String user, String password) {
     database = url.substring(url.lastIndexOf("/"), url.indexOf("?"));
-    System.out.println("getting Connection: " + url + " " + user + " " + password);
     return new Connection();
   }
 }

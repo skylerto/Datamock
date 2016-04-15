@@ -1,0 +1,5 @@
+#! /bin/sh
+
+javac src/App.java -d bin
+
+java -cp bin/:lib/mysql-jdbc.jar App
