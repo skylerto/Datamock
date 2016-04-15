@@ -11,6 +11,8 @@ Firstly, ensure that JPF is installed on your machine. For a quick and dirty exa
 
 For contributing, clone, and have a look at the readme on the [code dir](code/README.md).
 
+./scripts/doc for pushing up javadoc.
+
 ## License
 
 MIT (c) Skyler Layne, 2016. Written for a school project.
