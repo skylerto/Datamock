@@ -16,7 +16,7 @@ public class Table {
    * Create an instance of a Table with the specified name.
    *
    * @param name
-   *          - the name of the table.
+   *          the name of the table.
    */
   public Table(String name) {
     this.table = new HashMap<String, List<String>>();
@@ -36,9 +36,9 @@ public class Table {
    * Add a specified value of that attribtue.
    *
    * @param attributename
-   *          - the name of the attribtue associated with the value.
+   *          the name of the attribtue associated with the value.
    * @param value
-   *          - the value to save under that attribtue.
+   *          the value to save under that attribtue.
    * @return true if the value has been added to the attribute.
    */
   public boolean add(String attributename, String value) {
@@ -57,7 +57,7 @@ public class Table {
    * Get the values of a specified attribute.
    *
    * @param attribute
-   *          - The name of the attribute.
+   *          The name of the attribute.
    * @return a list of all the values for that attribute.
    */
   public List<String> getValues(String attribute) {
@@ -77,20 +77,28 @@ public class Table {
     return this.table.keySet();
   }
 
+  /**
+   * Return a string representation of the table.
+   */
   public String toString() {
-    StringBuilder s = new StringBuilder();
+    StringBuilder str = new StringBuilder();
 
-    this.table.forEach((k, v) -> {
-      StringBuilder b = new StringBuilder();
-      v.forEach(a -> {
-        b.append(a + ", ");
+    this.table.forEach((key, value) -> {
+      StringBuilder otherStr = new StringBuilder();
+      value.forEach(a -> {
+        otherStr.append(a + ", ");
       });
-      s.append("Attribute - " + k + ": " + b.toString() + "\n");
+      str.append("Attribute - " + key + ": " + otherStr.toString() + "\n");
     });
 
-    return s.toString();
+    return str.toString();
   }
 
+  /**
+   * Return a new table iterator.
+   * 
+   * @return a new {@link TableIterator}.
+   */
   public TableIterator iterator() {
     return new TableIterator(this);
   }

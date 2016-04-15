@@ -1,1 +1,4 @@
 
+com.mysql.jdbc
+java.sql
+mock

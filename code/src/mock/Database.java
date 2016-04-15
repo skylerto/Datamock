@@ -11,10 +11,19 @@ public class Database {
   private List<Table> tables;
   private String name;
 
+  /**
+   * Default constructor.
+   */
   public Database() {
     this.tables = new ArrayList<Table>();
   }
 
+  /**
+   * Create a database with a name.
+   * 
+   * @param name
+   *          the name of the database.
+   */
   public Database(String name) {
     this.tables = new ArrayList<Table>();
     this.name = name;
@@ -56,6 +65,13 @@ public class Database {
     return this.tables.add(new Table(name));
   }
 
+  /**
+   * Insert into the database.
+   * 
+   * @param statement
+   *          the statement to be executed.
+   * @return if the statement was executed successfully or not.
+   */
   public boolean insert(String statement) {
     // insert (ops) into table name
     String table = statement.substring(statement.indexOf("o ") + 2, statement.indexOf("(") - 1);
@@ -66,8 +82,8 @@ public class Database {
     statement = statement.replace("(" + as + ")", "");
 
     String ops = statement.substring(statement.indexOf("(") + 1, statement.indexOf(")"));
-    ArrayList<String> attributes = new ArrayList(Arrays.asList(as.split(", ")));
-    ArrayList<String> values = new ArrayList(Arrays.asList(ops.split(", ")));
+    ArrayList<String> attributes = new ArrayList<String>(Arrays.asList(as.split(", ")));
+    ArrayList<String> values = new ArrayList<String>(Arrays.asList(ops.split(", ")));
 
     System.out.println(attributes.toString() + ": " + values.toString());
 
@@ -78,6 +94,17 @@ public class Database {
     return true;
   }
 
+  /**
+   * Private insert into the the table.
+   * 
+   * @param table
+   *          the table to be inserted into.
+   * @param attribute
+   *          which attribute it is inserted into.
+   * @param value
+   *          the value to be inserted.
+   * @return if the insertion worked or not.
+   */
   private boolean insert(String table, String attribute, String value) {
     return this.getTable(table).add(attribute, value);
   }

@@ -28,8 +28,8 @@ public class Statement {
    * Execute the specified Query command.
    * 
    * @param input
-   *          - the desired query.
-   * @return - an iterator over the query results.
+   *          the desired query.
+   * @return an iterator over the query results.
    */
   public ResultSet executeQuery(String input) {
     System.out.println("Executing Query: " + input);
@@ -37,7 +37,7 @@ public class Statement {
 
     String tablename = input.substring(index, input.length()).trim();
     List<Table> tables = this.database.getTables();
-    
+
     return new ResultSet(this.database.getTable(tablename));
   }
 
@@ -45,8 +45,8 @@ public class Statement {
    * Execute the specified command from the passed input.
    * 
    * @param input
-   *          - the input command and arguments.
-   * @return - if the command hits
+   *          the input command and arguments.
+   * @return if the command hits
    */
   public boolean execute(String input) {
     // Parse input
@@ -83,6 +83,10 @@ public class Statement {
 
   /**
    * Execute update an update statement such as insert into.
+   * 
+   * @param input
+   *          the update to execute.
+   * @return always 1.
    */
   public int executeUpdate(String input) {
     // Parse input

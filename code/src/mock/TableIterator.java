@@ -14,19 +14,35 @@ import java.util.Map.Entry;
  */
 public class TableIterator implements Iterator<Map<String, String>> {
 
-  private int index; // index in the attribute array
+  private int index;
   private Table table;
 
+  /**
+   * Create a new table Iterator with a table.
+   * 
+   * @param table
+   *          - the table to iterator over.
+   */
   public TableIterator(Table table) {
     this.index = 0;
     this.table = table;
   }
 
+  /**
+   * Check if there's another attribute in the table.
+   * 
+   * @return if there is a next item in the iterator.
+   */
   @Override
   public boolean hasNext() {
     return index < table.getAttribtues().size();
   }
 
+  /**
+   * Get the next column in the table.
+   * 
+   * @return the next table.
+   */
   @Override
   public Map<String, String> next() {
     Map<String, String> val = new HashMap();
@@ -37,6 +53,9 @@ public class TableIterator implements Iterator<Map<String, String>> {
     return val;
   }
 
+  /**
+   * Move the iterator alone.
+   */
   private void incrementIndex() {
     this.index++;
   }

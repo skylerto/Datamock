@@ -25,10 +25,10 @@ public class ResultSet {
   }
 
   /**
-   * Create a ResultSet with a specified Table.
+   * Create a ResultSet with a specified {@link Table}.
    * 
    * @param table
-   *          - the table returning the result.
+   *          the table returning the result.
    */
   public ResultSet(Table table) {
     this.iterator = table.iterator();
@@ -40,8 +40,8 @@ public class ResultSet {
    * Get a String representation of the passed attribute.
    * 
    * @param attribute
-   *          - the attribute.
-   * @return - a string value of the current table row of the passed attribute.
+   *          the attribute.
+   * @return a string value of the current table row of the passed attribute.
    */
   public String getString(String attribute) {
     return this.current.get(attribute);
@@ -51,8 +51,8 @@ public class ResultSet {
    * Get an integer representation of the passed attribute.
    * 
    * @param attribute
-   *          - the attribute to query.
-   * @return - an int representation of the value of the given row column.
+   *          the attribute to query.
+   * @return an int representation of the value of the given row column.
    */
   public int getInt(String attribute) {
     return Integer.parseInt(this.current.get(attribute));
@@ -61,7 +61,7 @@ public class ResultSet {
   /**
    * Move the TableIterator forward.
    * 
-   * @return - if we can move forward or not.
+   * @return if we can move forward or not.
    */
   public boolean next() {
     if (this.iterator.hasNext()) {
