@@ -95,6 +95,23 @@ public class Database {
   }
 
   /**
+   * Remove from a database.
+   * 
+   * @param statement
+   *          the statement to parse and execute.
+   * @return if the statement was executed sucessfully.
+   */
+  public boolean remove(String statement) {
+    String table = statement.substring(statement.indexOf("m ") + 2, statement.indexOf("w") - 1);
+    String attribute = statement.substring(statement.indexOf("where ") + 6, statement.indexOf("="));
+    String value = statement.substring(statement.indexOf("=") + 1, statement.length());
+
+    this.getTable(table).delete(attribute, value);
+    return true;
+
+  }
+
+  /**
    * Private insert into the the table.
    * 
    * @param table

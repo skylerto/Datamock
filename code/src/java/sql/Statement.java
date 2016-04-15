@@ -112,6 +112,12 @@ public class Statement {
 
       System.out.println("Creating table... " + tablename);
       break;
+    case "delete":
+      this.database.remove(input);
+
+      // Who even cares about schema atm.
+
+      System.out.println("Creating table... " + tablename);
     case "drop":
       // if (instance.equals("table") && this.database.containsKey(tablename)) {
       // this.database.remove(tablename);

@@ -1,6 +1,7 @@
 package mock;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * A wrapper of a Map to represent a database table.
@@ -49,6 +50,34 @@ public class Table {
     } else {
       getTable().put(attributename, new ArrayList());
       result = getTable().get(attributename).add(value);
+    }
+    return result;
+  }
+
+  /**
+   * Remove row from the table where the attribute of that row is the value.
+   * 
+   * @param attribute
+   *          the attribute to find the value.
+   * @param value
+   *          the value of the attribute.
+   * @return if the remove worked.
+   */
+  public boolean delete(String attribute, String value) {
+
+    System.out.println("\n\nTABLE REMOVE\n\n");
+    boolean result = false;
+    if (getTable().get(attribute) != null) {
+      TableIterator tb = this.iterator();
+      while (tb.hasNext()) {
+        Map<String, String> row = tb.next();
+        for (Entry<String, String> entry : row.entrySet()) {
+          if (entry.getKey().equals(attribute) && entry.getValue().equals(value)) {
+            result = tb.delete();
+          }
+        }
+
+      }
     }
     return result;
   }

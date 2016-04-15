@@ -1,5 +1,6 @@
 package mock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -35,7 +36,7 @@ public class TableIterator implements Iterator<Map<String, String>> {
    */
   @Override
   public boolean hasNext() {
-    return index < table.getAttribtues().size();
+    return index < table.getTable().size();
   }
 
   /**
@@ -51,6 +52,23 @@ public class TableIterator implements Iterator<Map<String, String>> {
     }
     incrementIndex();
     return val;
+  }
+
+  /**
+   * Delete the current row from the database.
+   * 
+   * @return if the delete worked.
+   */
+  public boolean delete() {
+    boolean result = false;
+    for (Entry<String, List<String>> entry : table.getTable().entrySet()) {
+      List<String> anitem = entry.getValue();
+      System.out.println(
+          "AN ITEM: " + anitem.toString() + " item: " + anitem.get(index - 1) + " index: " + index);
+      anitem.remove(index - 1);
+      result = true;
+    }
+    return result;
   }
 
   /**

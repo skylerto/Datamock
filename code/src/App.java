@@ -51,6 +51,17 @@ public class App {
         System.out.println(rs.getString("name") + ", " + rs.getInt("id"));
       }
 
+      System.out.println("\nREMOVE FROM DATABASE");
+      // remove from database
+      stmt.executeUpdate("delete from students where name='Jane Smith'");
+
+      // Retrieve Data
+      rs = stmt.executeQuery("select * from students");
+
+      while (rs.next()) {
+        System.out.println(rs.getString("name") + ", " + rs.getInt("id"));
+      }
+
       // Shut it down.
       rs.close();
       stmt.close();
